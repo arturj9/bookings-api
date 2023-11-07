@@ -1,6 +1,6 @@
 # bookings-api
-
-[] Mais rotas
-[] Hierarquia de acesso
-[] Validações - Zoodin
-[] Testes
+## Fazer
+- [ ] Mais rotas
+- [ ] Hierarquia de acesso
+- [ ] Validações - Zoodin
+- [ ] Testes

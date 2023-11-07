@@ -1,7 +1,7 @@
 import db from "../database/index.js";
 import User from "./User.js";
 
-class UserRepository {
+class UserPostgresRepository {
   constructor() {
     this.db = db
   }
@@ -21,4 +21,4 @@ class UserRepository {
   }
 }
 
-export default UserRepository;
+export default UserPostgresRepository;

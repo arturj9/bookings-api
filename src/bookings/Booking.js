@@ -1,16 +1,16 @@
-import { v4 } from 'uuid'
+import { v4 } from "uuid";
 
 // id, roomId, guestName, checkInDate, checkOutDate
 
 class Booking {
-    constructor(id, user, roomId, guestName, checkInDate, checkOutDate){
-        this.id = id ?? v4()
-        this.user = user
-        this.roomId = roomId
-        this.guestName = guestName
-        this.checkInDate = checkInDate
-        this.checkOutDate = checkOutDate
-    }
+  constructor(id, userId, roomId, guestName, checkInDate, checkOutDate) {
+    this.id = id ?? v4();
+    this.userId = userId;
+    this.roomId = roomId;
+    this.guestName = guestName;
+    this.checkInDate = new Date(checkInDate);
+    this.checkOutDate = new Date(checkOutDate);
+  }
 }
 
-export default Booking
+export default Booking;
