@@ -6,7 +6,7 @@ import config_values from "../config.js";
 
 const pgp = pgPromise()
 
-const db = pgp(`postgres://${config_values.dbUser}:${config_values.dbPassword}@${config_values.dbHost}:${config_values.dbPort}/${config_values.dbName}`)
+const db = pgp(`postgres://${config_values.dbUser}:${config_values.dbPassword}@db:${config_values.dbPort}/${config_values.dbName}`)
 
 // db.query("SELECT 1 + 1 AS result").then((result)=>console.log(result))
 const __filename = fileURLToPath(import.meta.url);
