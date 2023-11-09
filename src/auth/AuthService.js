@@ -18,26 +18,45 @@ class AuthService {
     newUser.password = bcrypt.hashSync(password, 10);
 
     await this.repository.save(newUser);
-
-    return newUser;
   }
 
   async login(email, password) {
     const user = await this.repository.findByEmail(email);
-    if (!user) throw new Error("Email or password invalid.");
+    if (!user) throw new Error("Invalid email or password.");
 
     const isSamePassword = bcrypt.compareSync(password, user.password);
-    if (!isSamePassword) throw new Error("Email or password invalid.");
+    if (!isSamePassword) throw new Error("Invalid email or password.");
 
     const token = Jwt.sign({ id: user.id, email: user.email }, "secret-jwt", {
       expiresIn: "1d",
     });
-    return { token, user };
+    return {token};
+  }
+
+  async delete(email, password){
+    const user = await this.repository.findByEmail(email);
+
+    const isSamePassword = bcrypt.compareSync(password, user.password);
+    if (!isSamePassword) throw new Error("Invalid password.");
+
+    await this.repository.delete(user)
+
+    return {message: ''}
+  }
+
+  async patch(email, password, user_updated){
+    const user = await this.repository.findByEmail(email);
+
+    const isSamePassword = bcrypt.compareSync(password, user.password);
+    if (!isSamePassword) throw new Error("Invalid password.");
+
+    await this.repository.patch(user, user_updated)
   }
 
   async verifyToken(token) {
     const decodedToken = Jwt.verify(token, "secret-jwt");
     const user = await this.repository.findByEmail(decodedToken.email);
+    user.password = undefined
     return user;
   }
 }
